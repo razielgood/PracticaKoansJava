@@ -15,7 +15,7 @@ public class AboutConditionals {
         if (true) {
             x++;
         }
-        assertEquals(x, __);
+        assertEquals(x, 2);
     }
 
     @Koan
@@ -27,14 +27,14 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, __);
+        assertEquals(x, 0);
     }
 
     @Koan
     public void basicIfElseIfElse() {
         int x = 1;
-        boolean secretBoolean = false;
-        boolean otherBooleanCondition = true;
+        boolean secretBoolean = true;
+        boolean otherBooleanCondition = false;
         if (secretBoolean) {
             x++;
         } else if (otherBooleanCondition) {
@@ -42,7 +42,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, __);
+        assertEquals(x, 2);
     }
 
     @Koan
@@ -58,7 +58,7 @@ public class AboutConditionals {
         else
             x--;
         // ...but they are recommended.
-        assertEquals(x, __);
+        assertEquals(x, 10);
     }
 
     @Koan
@@ -68,6 +68,7 @@ public class AboutConditionals {
         boolean otherBooleanCondition = true;
         // Adding curly braces avoids the "dangling else" problem seen
         // above.
+        // dude
         if (secretBoolean) {
             x++;
             if (otherBooleanCondition) {
@@ -76,16 +77,18 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, __);
+        assertEquals(x, 0);
     }
 
+    // El break Si queremos que solo se ejecuten 
+    //las instrucciones del caso que coincida con la expresión
     @Koan
     public void basicSwitchStatement() {
         int i = 1;
         String result = "Basic ";
         switch (i) {
             case 1:
-                result += "One";
+                result += "one";
                 break;
             case 2:
                 result += "Two";
@@ -93,9 +96,10 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic one");
     }
 
+    // se ejecutan tolas las instrucciones (no hay break)
     @Koan
     public void switchStatementFallThrough() {
         int i = 1;
@@ -108,9 +112,10 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic OneTwoNothing");
     }
 
+    // Dude
     @Koan
     public void switchStatementCrazyFallThrough() {
         int i = 5;
@@ -123,7 +128,7 @@ public class AboutConditionals {
             case 2:
                 result += "Two";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic NothingTwo");
     }
 
     @Koan
@@ -131,6 +136,9 @@ public class AboutConditionals {
         int i = 5;
         // What happens if you remove the 'final' modifier?
         // What does this mean for case values?
+        // Significa que la  final marque "caseOne" como constante
+        // No sera modificable i=5 diferente a "caseOne=1"
+        // Por tanto se ejecuta default. 
         final int caseOne = 1;
         String result = "Basic ";
         switch (i) {
@@ -140,7 +148,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic Nothing");
     }
 
     @Koan
@@ -157,7 +165,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, __);
+        assertEquals(result, "Basic One");
     }
 
     @Koan
@@ -168,9 +176,9 @@ public class AboutConditionals {
         if (trueCount.count() || falseCount.count()) {
             x = "kthxbai";
         }
-        assertEquals(x, __);
-        assertEquals(trueCount.count, __);
-        assertEquals(falseCount.count, __);
+        assertEquals(x, "kthxbai");
+        assertEquals(trueCount.count, 1);
+        assertEquals(falseCount.count, 0);
     }
     
     @Koan
@@ -181,9 +189,9 @@ public class AboutConditionals {
         if (trueCount.count() | falseCount.count()) {
             x = "kthxbai";
         }
-        assertEquals(x, __);
-        assertEquals(trueCount.count, __);
-        assertEquals(falseCount.count, __);
+        assertEquals(x, "kthxbai");
+        assertEquals(trueCount.count, 1);
+        assertEquals(falseCount.count, 1);
     }
     
     class Counter {
